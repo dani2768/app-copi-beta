@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor COPI - Ventas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">Bienvenido</div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <i class="fas fa-shopping-cart icon"></i>
+                        <span>Ventas</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-cash-register icon"></i>
+                        <span>Caja Chica</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-boxes icon"></i>
+                        <span>Inventario</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-tags icon"></i>
+                        <span>Promo</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-users icon"></i>
+                        <span>Clientes</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-chart-bar icon"></i>
+                        <span>Resumen</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="app-title">Gestor Copi</div> <div class="logo">
+                    <img src="https://via.placeholder.com/150x40/333333/FFFFFF?text=@COPI" alt="COPI Logo">
+                </div>
+            </header>
+
+            <section class="sales-section">
+                <div class="sales-grid">
+                    <div class="input-group full-width">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tasa-dia">Tasa del Dia</label>
+                        <div class="input-with-icon">
+                             <span class="icon">%</span>
+                             <input type="number" id="tasa-dia" placeholder="%" value="36.5">
+                        </div>
+                    </div>
+
+                    <div class="items-in-sale-container">
+                        <h3>Items en esta Venta</h3>
+                        <ul id="items-in-sale-list" class="items-list">
+                            </ul>
+                    </div>
+
+                    <div class="add-product-section">
+                        <h3>Agregar Producto</h3>
+                        <div class="input-group">
+                            <label for="producto">Producto</label>
+                            <select id="producto">
+                                <option value="" disabled selected>--Seleccione un producto--</option>
+                                <option value="Producto A|10.00">Producto A ($10.00)</option>
+                                <option value="Producto B|25.50">Producto B ($25.50)</option>
+                                <option value="Servicio C|5.00">Servicio C ($5.00)</option>
+                                <option value="Material D|1.25">Material D ($1.25)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="cantidad">Cantidad</label>
+                            <div class="input-with-icon">
+                                 <i class="fas fa-cubes icon"></i>
+                                 <input type="number" id="cantidad" value="1" min="1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="totals-payment-section">
+                        <div class="totals">
+                            <p>Total USD: <span id="total-usd">$0.00</span></p>
+                            <p>Total Bs: <span id="total-bs">Bs 0.00</span></p>
+                        </div>
+                        <div class="input-group">
+                            <label for="metodo-pago">Metodo de Pago</label>
+                            <div class="input-with-icon">
+                                 <i class="fas fa-money-check-alt icon"></i>
+                                 <select id="metodo-pago">
+                                    <option value="" disabled selected>-- Seleccione --</option>
+                                    <option value="Efectivo Bs">Efectivo Bs</option>
+                                    <option value="USD$">USD$</option>
+                                    <option value="Punto de Venta">Punto de Venta</option>
+                                    <option value="Pago Movil">Pago Movil</option>
+                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <button class="btn btn-add" id="add-to-sale-btn"><i class="fas fa-plus-circle"></i> Agregar a la Venta</button>
+                    <button class="btn btn-complete" id="complete-sale-btn"><i class="fas fa-check-circle"></i> Completar Venta</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
