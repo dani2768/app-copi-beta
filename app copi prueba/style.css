@@ -11,27 +11,26 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Simil Poppins */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #1a1a1a;
     color: var(--text-color);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinea arriba para evitar centrado vertical en apps altas */
-    min-height: 100vh;
-    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    overflow-y: auto; /* Permite scroll en el body si el contenido total excede la vista */
 }
 
 .app-container {
     display: flex;
     width: 95%; /* Ajusta el ancho total de la app */
     max-width: 1200px; /* Ancho máximo para pantallas grandes */
-    height: calc(100vh - 40px); /* Altura de la ventana menos un margen */
-    min-height: 700px; /* Altura mínima para que no se vea muy comprimido */
+    height: auto; /* Permitimos que la altura se adapte al contenido */
+    min-height: unset; /* Eliminamos cualquier altura mínima forzada */
+    /* Se ha eliminado 'overflow: hidden;' de aquí para resolver conflictos de scroll */
     background-color: var(--bg-dark);
     border-radius: var(--border-radius);
-    overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
     margin: 20px 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
@@ -110,31 +109,31 @@ body {
     color: var(--text-color);
 }
 
-.main-header .app-title { /* Estilo para el nuevo título "Gestor Copi" */
+.main-header .app-title {
     font-size: 1.4em;
     font-weight: bold;
     color: var(--text-color);
 }
 
 .main-header .logo img {
-    height: 40px; /* Ajusta el tamaño del logo */
+    height: 40px;
     vertical-align: middle;
 }
 
 .sales-section {
     padding: 25px;
     flex-grow: 1;
-    display: flex; /* Usamos flex para apilar el grid y los botones */
+    display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Permite scroll solo en esta sección si el contenido es largo */
+    overflow-y: auto; /* Aquí es donde el scroll principal de la sección de ventas debe ocurrir */
 }
 
 .sales-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    grid-template-rows: auto auto auto auto; /* Cuatro filas: Fecha, Tasa, AddProduct, Totals */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
     gap: 20px;
-    margin-bottom: 30px; /* Espacio antes de los botones */
+    margin-bottom: 30px;
     flex-grow: 1; /* Permite que el grid ocupe el espacio restante */
 }
 
@@ -144,7 +143,7 @@ body {
 }
 
 .input-group.full-width {
-    grid-column: 1 / -1; /* Ocupa ambas columnas */
+    grid-column: 1 / -1;
 }
 
 .input-group label {
@@ -157,7 +156,7 @@ body {
 .input-group input[type="text"],
 .input-group input[type="number"],
 .input-group input[type="date"],
-.input-group select { /* Aplicamos estilos a select también */
+.input-group select {
     background-color: var(--bg-light);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -166,17 +165,17 @@ body {
     font-size: 1em;
     outline: none;
     transition: border-color 0.2s ease;
-    -webkit-appearance: none; /* Elimina estilos por defecto en Webkit */
-    -moz-appearance: none;    /* Elimina estilos por defecto en Firefox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
 }
-/* Estilo para la flecha del select */
+
 .input-group select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0f0f0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 1em;
-    padding-right: 35px; /* Deja espacio para la flecha */
+    padding-right: 35px;
 }
 
 
@@ -201,22 +200,22 @@ body {
 }
 
 .input-with-icon input,
-.input-with-icon select { /* Aplicamos a select también */
+.input-with-icon select {
     flex-grow: 1;
     border: none;
     background-color: transparent;
-    padding: 12px 0; /* Padding interno */
+    padding: 12px 0;
 }
 
 /* Specific grid areas positioning */
 .items-in-sale-container {
-    grid-column: 2 / 3; /* Ocupa la segunda columna */
-    grid-row: 2 / span 3; /* Ocupa desde la fila 2 hasta la 4 (Tasa, AddProduct, Totals) */
+    grid-column: 2 / 3;
+    grid-row: 2 / span 3;
     background-color: var(--bg-medium);
     border-radius: var(--border-radius);
     padding: var(--padding-base);
-    overflow-y: auto; /* Para los items de la lista */
-    min-height: 200px; /* Altura mínima para la lista */
+    overflow-y: auto; /* Para los items de la lista, si la lista en sí es muy larga */
+    min-height: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -235,7 +234,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; /* Permite que la lista crezca */
+    flex-grow: 1;
 }
 
 .items-list li {
@@ -279,10 +278,9 @@ body {
 }
 
 /* Posición de los elementos de la columna izquierda */
-/* Tasa del día ya está en grid-row: auto por defecto, y grid-column: 1 / 2 */
 .add-product-section {
-    grid-column: 1 / 2; /* Ocupa la primera columna */
-    grid-row: 3 / 4; /* Ocupa la tercera fila */
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
     background-color: var(--bg-medium);
     border-radius: var(--border-radius);
     padding: var(--padding-base);
@@ -291,8 +289,8 @@ body {
 }
 
 .totals-payment-section {
-    grid-column: 1 / 2; /* Ocupa la primera columna */
-    grid-row: 4 / 5; /* Ocupa la cuarta fila */
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
     background-color: var(--bg-medium);
     border-radius: var(--border-radius);
     padding: var(--padding-base);
@@ -325,8 +323,8 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 0 0 0; /* Ya tiene padding en sales-section */
-    margin-top: 20px; /* Añade margen superior si es necesario para separar del grid */
+    padding: 0;
+    margin-top: 20px;
 }
 
 .btn {
@@ -358,7 +356,7 @@ body {
 }
 
 .btn-complete {
-    background-color: #5cb85c; /* Un verde para completar */
+    background-color: #5cb85c;
     color: white;
 }
 
@@ -372,7 +370,8 @@ body {
     .app-container {
         flex-direction: column;
         height: auto;
-        min-height: auto;
+        min-height: unset;
+        margin: 0;
     }
 
     .sidebar {
@@ -400,8 +399,8 @@ body {
     }
 
     .sales-grid {
-        grid-template-columns: 1fr; /* Una sola columna en pantallas más pequeñas */
-        grid-template-rows: auto; /* Las filas se autoajustarán */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
     }
 
     .input-group.full-width {
@@ -415,6 +414,10 @@ body {
         grid-row: auto;
     }
 
+    .items-in-sale-container {
+        min-height: 150px;
+    }
+
     .buttons-container {
         flex-direction: column;
         gap: 10px;
@@ -423,7 +426,7 @@ body {
 
 @media (max-width: 768px) {
     .sidebar-nav .nav-item span {
-        display: none; /* Oculta el texto de la navegación para ahorrar espacio */
+        display: none;
     }
     .sidebar-nav .nav-item {
         justify-content: center;
@@ -434,11 +437,13 @@ body {
     }
     .sidebar-header {
         text-align: center;
+        padding-bottom: 10px;
     }
     .main-header {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+        padding: 15px;
     }
 }
 
@@ -447,7 +452,7 @@ body {
         width: 100%;
         border-radius: 0;
         margin: 0;
-        height: 100vh;
+        height: auto;
         min-height: unset;
     }
     .sales-section {
